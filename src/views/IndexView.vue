@@ -19,40 +19,146 @@ a {
   text-decoration: none;
   font-size: 25px;
 }
-</style>
 
+.layout-header h1 {
+  color: #fff;
+  text-align: left;
+  line-height: 60px;
+}
+
+.layout-body {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.layout-aside {
+  background: rgba(255, 255, 255, 0.3) !important;
+  font-family: 微软雅黑;
+  font-weight: bolder;
+  color: aliceblue;
+}
+
+.layout-aside i {
+  color: #fff !important;
+}
+
+.layout-main {
+}
+
+.el-menu-item.is-active {
+  background: #262424 !important;
+}
+</style>
 <template>
   <div>
+    <!-- 最外层容器 -->
     <el-container>
+      <!-- 上半部分：顶栏 -->
       <el-header class="layout-header">
         <div class="block">
-          <h1 style="color: black;font-size: 40px;font-family: 方正姚体">清风文档管理系统
-          </h1>
+          <h1 style="color: black;font-size: 40px;font-family: 方正姚体">清风云文档管理</h1>
         </div>
       </el-header>
-      <el-main class="layout-main">
-        <!--创建空间名的表单-->
-        <span style="font-size: 20px;font-family: 方正姚体">请输入空间名称:</span>
-        <el-input style="width: 300px" type="text" v-model="bucketName" placeholder="请输入空间名：" maxlength="10"
-                  show-word-limit></el-input>
-        <el-button style="margin-left: 10px" type="primary" @click="submitForm()">创建
-        </el-button>
+      <!-- 下半部分：容器 -->
+      <el-container class="layout-body">
+        <!-- 下半部分的左侧边栏 -->
+        <el-aside class="layout-aside">
+          <el-menu
+              router
+              :default-active="$router.currentRoute.path"
+              class="el-menu-vertical-demo"
+              background-color="rgba(255, 255, 255, 0)"
+              text-color="#262424"
+              active-text-color="#ba6049">
+            <!-- 首页 -->
+            <el-menu-item index="/">
+              <i class="el-icon-s-home"></i>
+              <span>首页</span>
+            </el-menu-item>
+            <!-- 临时页面 -->
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-s-tools"></i>
+                <span>存储空间</span>
+              </template>
+              <el-menu-item index="/sys-index/space/createBucket">
+                <i class="el-icon-loading"></i>
+                <span style="font-size: 15px;font-weight: bold">创建存储空间</span>
+              </el-menu-item>
 
-        <!--上传图片的表单-->
-        <p style="font-size: 20px;font-family: 方正姚体">请选择要上传的图片:</p>
-        <el-upload
-            class="upload-demo"
-            ref="upload"
-            name="file"
-            action="http://localhost:9801/upload/image"
-            :on-success="handleSuccess"
-            :on-remove="handleRemove"
-            :auto-upload="false">
-          <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-      </el-main>
+              <el-menu-item index="/sys-admin/main/admin/add-new">
+                <i class="el-icon-circle-plus"></i>
+                <span style="font-size: 15px;font-weight: bold">删除存储空间</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/user/list">
+                <i class="el-icon-user-solid"></i>
+                <span style="font-size: 15px;font-weight: bold">存储空间列表</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">设置空间权限</span>
+              </el-menu-item>
+            </el-submenu>
+
+            <el-submenu index="2">
+              <template slot="title">
+                <i class="el-icon-s-tools"></i>
+                <span>空间标签</span>
+              </template>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">设置空间标签</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">查询空间标签</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">删除空间标签</span>
+              </el-menu-item>
+            </el-submenu>
+
+            <el-submenu index="3">
+              <template slot="title">
+                <i class="el-icon-s-tools"></i>
+                <span>资源管理</span>
+              </template>
+              <el-menu-item index="/sys-index/doc/docUpload">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">文件上传</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">删除文件</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">存储状态</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">文件复制</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">修改储存类型</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-admin/main/banner/add-new">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">修改过期时间</span>
+              </el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
+        <!-- 下半部分的右侧主体部分 -->
+        <el-main class="layout-main">
+          <router-view/>
+        </el-main>
+      </el-container>
     </el-container>
   </div>
 </template>
@@ -61,37 +167,16 @@ a {
 export default {
   data() {
     return {
-      image: '',
-      bucketName: '',
-      dialogImageUrl: '', // 绑定图片路径
-      dialogVisible: false,
+      activeMenuItemPath: '',
     }
   },
-  methods: {
-    submitUpload() {
-      this.$refs.upload.submit();
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-      if (file.response == null){
-        this.$message.warning("文件暂未上传，删除失败！")
-      }
-      let url = this.GLOBAL.systemUrl + 'upload/remove?url=' + file.response.data;
-      console.log("发送删除图片的请求")
-      this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          }).get(url).then((response) => {
-        console.log("删除服务器图片完成!")
-      })
-    },
-    handleSuccess(response, file, fileList) {//调用后可直接接收响应过来的数据
-      console.log(response)
-    },
-    submitForm() {
-
+  methods: {},
+  mounted() {
+    let path = this.$router.currentRoute.path;
+    if (path.endsWith('/sys-admin/product/spu-add-new')) {
+      this.activeMenuItemPath = '/sys-admin/product/spu-add-new';
+    } else {
+      this.activeMenuItemPath = path;
     }
   }
 }

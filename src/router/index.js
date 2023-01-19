@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/IndexView.vue'
 import AuthView from '../views/AuthView.vue'
+import IndexView from "@/views/IndexView";
 
 Vue.use(VueRouter)
 
 const routes = [
+    /*权限管理*/
     {
         path: '/auth',
         component: AuthView,
@@ -18,6 +20,27 @@ const routes = [
         ]
 
     },
+    /*文件管理*/
+    {
+        path: '/',
+        component: IndexView,
+        redirect: '/sys-index',
+        children: [
+            {
+                path: '/sys-index',
+                component: () => import ('../views/sys-index/SystemIndex.vue')
+            },
+            {
+                path: '/sys-index/space/createBucket',
+                component: () => import ('../views/sys-index/main/CreateBucket')
+            },
+            {
+                path: '/sys-index/doc/docUpload',
+                component: () => import ('../views/sys-index/main/DocumentUpload')
+            }
+        ]
+    },
+    /*非模块页面*/
     {
         path: '/',
         component: HomeView

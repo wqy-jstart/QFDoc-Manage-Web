@@ -37,13 +37,14 @@ export default {
                 'Authorization': localStorage.getItem('jwt')
               }
             }).post(url).then((response) => {
-          if (response.data == '614') {
+          let responseBody = response.data;
+          if (responseBody.data == '614') {
             this.$message.error("该空间名已存在！")
-          } else if (response.data == '400') {
+          } else if (responseBody.data == '400') {
             this.$message.error("不符合命名规范！")
-          } else if (response.data == '401') {
+          } else if (responseBody.data == '401') {
             this.$message.error("认证信息有误！")
-          } else if (response.data == '630') {
+          } else if (responseBody.data == '630') {
             this.$message.error("超过最大创建数！")
           } else {
             this.$message.success("创建成功！")

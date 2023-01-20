@@ -93,7 +93,7 @@ a {
                 <i class="el-icon-circle-plus"></i>
                 <span style="font-size: 15px;font-weight: bold">删除存储空间</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/user/list">
+              <el-menu-item index="/sys-index/bucket/bucketList">
                 <i class="el-icon-user-solid"></i>
                 <span style="font-size: 15px;font-weight: bold">存储空间列表</span>
               </el-menu-item>

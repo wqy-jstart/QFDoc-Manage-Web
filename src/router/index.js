@@ -39,6 +39,10 @@ const routes = [
                 component: () => import ('../views/sys-index/main/bucket/DropBucket')
             },
             {
+                path: '/sys-index/bucket/bucketList',
+                component: () => import ('../views/sys-index/main/bucket/BucketList')
+            },
+            {
                 path: '/sys-index/doc/docUpload',
                 component: () => import ('../views/sys-index/main/file/DocumentUpload')
             }

@@ -31,12 +31,16 @@ const routes = [
                 component: () => import ('../views/sys-index/SystemIndex.vue')
             },
             {
-                path: '/sys-index/space/createBucket',
-                component: () => import ('../views/sys-index/main/CreateBucket')
+                path: '/sys-index/bucket/createBucket',
+                component: () => import ('../views/sys-index/main/bucket/CreateBucket')
+            },
+            {
+                path: '/sys-index/bucket/dropBucket',
+                component: () => import ('../views/sys-index/main/bucket/DropBucket')
             },
             {
                 path: '/sys-index/doc/docUpload',
-                component: () => import ('../views/sys-index/main/DocumentUpload')
+                component: () => import ('../views/sys-index/main/file/DocumentUpload')
             }
         ]
     },

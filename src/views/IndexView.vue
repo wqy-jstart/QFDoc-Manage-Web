@@ -84,12 +84,12 @@ a {
                 <i class="el-icon-s-tools"></i>
                 <span>存储空间</span>
               </template>
-              <el-menu-item index="/sys-index/space/createBucket">
+              <el-menu-item index="/sys-index/bucket/createBucket">
                 <i class="el-icon-loading"></i>
                 <span style="font-size: 15px;font-weight: bold">创建存储空间</span>
               </el-menu-item>
 
-              <el-menu-item index="/sys-admin/main/admin/add-new">
+              <el-menu-item index="/sys-index/bucket/dropBucket">
                 <i class="el-icon-circle-plus"></i>
                 <span style="font-size: 15px;font-weight: bold">删除存储空间</span>
               </el-menu-item>

@@ -13,12 +13,12 @@
       <el-breadcrumb-item :to="{ path: '/' }">
         <i class="el-icon-s-promotion"></i> 文档管理
       </el-breadcrumb-item>
-      <el-breadcrumb-item>存储空间列表</el-breadcrumb-item>
+      <el-breadcrumb-item>Bucket文件列表</el-breadcrumb-item>
     </el-breadcrumb>
 
     <el-divider></el-divider>
 
-    <p style="font-family: 幼圆;font-size: 20px;margin: 20px;font-weight: bold">查询七牛云存储空间列表时，需注意！</p>
+    <p style="font-family: 幼圆;font-size: 20px;margin: 20px;font-weight: bold">查询七牛云Bucket文件列表时，需注意！</p>
     <p style="font-family: 幼圆;font-size: 20px;margin: 20px">
       该操作会根据您输入的存储空间名称进行查询该名称下的文件列表<br>
       下面列表会列举文件的信息，其中type类型("0"代表公开/"1"代表私有)！

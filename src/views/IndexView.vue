@@ -95,11 +95,11 @@ a {
               </el-menu-item>
               <el-menu-item index="/sys-index/bucket/bucketList">
                 <i class="el-icon-user-solid"></i>
-                <span style="font-size: 15px;font-weight: bold">存储空间列表</span>
+                <span style="font-size: 15px;font-weight: bold">Bucket文件列表</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/banner/add-new">
+              <el-menu-item index="/sys-index/bucket/setBucketPrivate">
                 <i class="el-icon-s-platform"></i>
-                <span style="font-size: 15px;font-weight: bold">设置空间权限</span>
+                <span style="font-size: 15px;font-weight: bold">设置Bucket访问权限</span>
               </el-menu-item>
             </el-submenu>
 

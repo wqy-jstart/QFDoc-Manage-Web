@@ -39,6 +39,10 @@ const routes = [
                 component: () => import ('../views/sys-index/main/bucket/DropBucket')
             },
             {
+                path: '/sys-index/bucket/setBucketPrivate',
+                component: () => import ('../views/sys-index/main/bucket/SetBucketPrivate')
+            },
+            {
                 path: '/sys-index/bucket/bucketList',
                 component: () => import ('../views/sys-index/main/bucket/BucketList')
             },

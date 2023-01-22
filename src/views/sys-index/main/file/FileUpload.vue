@@ -14,7 +14,7 @@
         class="upload-demo"
         ref="upload"
         name="file"
-        action="http://localhost:9801/upload/image"
+        action="http://localhost:9801/file/image"
         :on-success="handleSuccess"
         :on-remove="handleRemove"
         :auto-upload="false">
@@ -43,7 +43,7 @@ export default {
       if (file.response == null){
         this.$message.warning("文件暂未上传，删除失败！")
       }
-      let url = this.GLOBAL.systemUrl + 'upload/remove?url=' + file.response.data;
+      let url = this.GLOBAL.systemUrl + 'file/remove?url=' + file.response.data;
       console.log("发送删除图片的请求")
       this.axios
           .create({

@@ -47,8 +47,16 @@ const routes = [
                 component: () => import ('../views/sys-index/main/bucket/BucketList')
             },
             {
-                path: '/sys-index/doc/docUpload',
-                component: () => import ('../views/sys-index/main/file/DocumentUpload')
+                path: '/sys-index/file/fileUpload',
+                component: () => import ('../views/sys-index/main/file/FileUpload')
+            },
+            {
+                path: '/sys-index/file/fileToDelete',
+                component: () => import ('../views/sys-index/main/file/DeleteToFile')
+            },
+            {
+                path: '/sys-index/file/setFileStatus',
+                component: () => import ('../views/sys-index/main/file/SetFileToStatus')
             }
         ]
     },

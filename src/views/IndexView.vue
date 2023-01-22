@@ -127,15 +127,15 @@ a {
                 <i class="el-icon-s-tools"></i>
                 <span>资源管理</span>
               </template>
-              <el-menu-item index="/sys-index/doc/docUpload">
+              <el-menu-item index="/sys-index/file/fileUpload">
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">文件上传</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/banner/add-new">
+              <el-menu-item index="/sys-index/file/fileToDelete">
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">删除文件</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/banner/add-new">
+              <el-menu-item index="/sys-index/file/setFileStatus">
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">存储状态</span>
               </el-menu-item>

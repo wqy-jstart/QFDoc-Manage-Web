@@ -8,8 +8,13 @@
 
     <el-divider></el-divider>
 
+    <p style="font-family: 幼圆;font-size: 20px;margin: 20px;font-weight: bold">上传文件到七牛云指定存储空间时，需注意！</p>
+    <p style="font-family: 幼圆;font-size: 20px;margin: 20px">
+      该操作会在七牛云控制平台中按照您的指令进行添加文件<br>
+      您需要选择本地指定路径的图片，最终选择上传服务器即可完成上传过程，并会在本地指定路径生成一份拷贝文件！
+    </p>
     <!--上传图片的表单-->
-    <sapn style="font-size: 20px;font-family: 方正姚体">请选择要上传的图片:</sapn>
+    <p style="font-size: 20px;font-family: 方正姚体;margin: 20px">请选择要上传的图片:</p>
     <el-upload
         class="upload-demo"
         ref="upload"
@@ -18,9 +23,9 @@
         :on-success="handleSuccess"
         :on-remove="handleRemove"
         :auto-upload="false">
-      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-      <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      <el-button slot="trigger" size="medium" type="primary">选取文件</el-button>
+      <el-button style="margin-left: 10px;" size="medium" type="success" @click="submitUpload">上传到服务器</el-button>
+      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过10MB</div>
     </el-upload>
   </div>
 </template>

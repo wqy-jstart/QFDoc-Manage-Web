@@ -143,9 +143,13 @@ a {
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">文件复制</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/banner/add-new">
+              <el-menu-item index="/sys-index/file/setBucketType">
                 <i class="el-icon-s-platform"></i>
-                <span style="font-size: 15px;font-weight: bold">修改储存类型</span>
+                <span style="font-size: 15px;font-weight: bold">修改存储类型</span>
+              </el-menu-item>
+              <el-menu-item index="/sys-index/file/fileToThaw">
+                <i class="el-icon-s-platform"></i>
+                <span style="font-size: 15px;font-weight: bold">解冻归档文件</span>
               </el-menu-item>
               <el-menu-item index="/sys-admin/main/banner/add-new">
                 <i class="el-icon-s-platform"></i>

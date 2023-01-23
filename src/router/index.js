@@ -61,6 +61,14 @@ const routes = [
             {
                 path: '/sys-index/file/copyToFile',
                 component: () => import ('../views/sys-index/main/file/CopyToFile')
+            },
+            {
+                path: '/sys-index/file/setBucketType',
+                component: () => import ('../views/sys-index/main/file/SetBucketType')
+            },
+            {
+                path: '/sys-index/file/fileToThaw',
+                component: () => import ('../views/sys-index/main/file/FileToThaw')
             }
         ]
     },

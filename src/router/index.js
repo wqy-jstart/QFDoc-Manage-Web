@@ -69,6 +69,10 @@ const routes = [
             {
                 path: '/sys-index/file/fileToThaw',
                 component: () => import ('../views/sys-index/main/file/FileToThaw')
+            },
+            {
+                path: '/sys-index/file/setOverTime',
+                component: () => import ('../views/sys-index/main/file/SetOverTime')
             }
         ]
     },

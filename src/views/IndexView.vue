@@ -151,7 +151,7 @@ a {
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">解冻归档文件</span>
               </el-menu-item>
-              <el-menu-item index="/sys-admin/main/banner/add-new">
+              <el-menu-item index="/sys-index/file/setOverTime">
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">修改过期时间</span>
               </el-menu-item>

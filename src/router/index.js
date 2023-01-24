@@ -51,6 +51,14 @@ const routes = [
                 component: () => import ('../views/sys-index/main/tags/SetBucketTags')
             },
             {
+                path: '/sys-index/tags/tagList',
+                component: () => import ('../views/sys-index/main/tags/TagsList')
+            },
+            {
+                path: '/sys-index/tags/deleteToTags',
+                component: () => import ('../views/sys-index/main/tags/DeleteToTags')
+            },
+            {
                 path: '/sys-index/file/fileUpload',
                 component: () => import ('../views/sys-index/main/file/FileUpload')
             },

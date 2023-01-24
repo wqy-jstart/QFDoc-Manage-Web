@@ -17,6 +17,14 @@ const routes = [
                 path: '/sys-admin',
                 component: () => import( '../views/sys-admin/SystemAdminIndex.vue')
             },
+            {
+                path: '/sys-admin/user/userList',
+                component: () => import( '../views/sys-admin/main/user/UserListView')
+            },
+            {
+                path: '/sys-admin/user/userAddNew',
+                component: () => import( '../views/sys-admin/main/user/UserAddNewView')
+            },
         ]
 
     },

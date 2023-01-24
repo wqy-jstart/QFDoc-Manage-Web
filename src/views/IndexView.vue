@@ -1,12 +1,10 @@
 <style>
 body {
-  background-image: url("../../public/background.png");
-  background-size: cover; /*设置封面*/
+  background-color: #dcf1e8;
 }
 
 .layout-header {
-  background: rgba(255, 255, 255, 0.5) !important;
-  color: #fff;
+  background: #2c71b4 !important;
   text-align: left;
   line-height: 60px;
 }
@@ -21,7 +19,7 @@ a {
 }
 
 .layout-header h1 {
-  color: #fff;
+  color: #fff !important;
   text-align: left;
   line-height: 60px;
 }
@@ -35,7 +33,7 @@ a {
 }
 
 .layout-aside {
-  background: rgba(255, 255, 255, 0.3) !important;
+  background: #29343e !important;
   font-family: 微软雅黑;
   font-weight: bolder;
   color: aliceblue;
@@ -45,15 +43,27 @@ a {
   color: #fff !important;
 }
 
-.layout-main {
-}
-
 .el-menu-item.is-active {
   background: #262424 !important;
 }
 
 span {
   font-size: 15px;
+}
+
+/*未访问*/
+a:link {
+  color: white;
+}
+
+/*悬停*/
+a:hover {
+  color: #27a7b8
+}
+
+/*点击或激活*/
+a:active {
+  color: #2d2dba
 }
 </style>
 <template>
@@ -63,7 +73,10 @@ span {
       <!-- 上半部分：顶栏 -->
       <el-header class="layout-header">
         <div class="block">
-          <h1 style="color: black;font-size: 40px;font-family: 方正姚体">清风云文档管理</h1>
+          <h1 style="color: black;font-size: 40px;font-family: 方正姚体">清风云文档管理
+            <span style="float: right;font-size: 30px;font-family: 方正姚体;color: white">
+                <a href="/auth">权限管理</a></span>
+          </h1>
         </div>
       </el-header>
       <!-- 下半部分：容器 -->
@@ -75,7 +88,7 @@ span {
               :default-active="$router.currentRoute.path"
               class="el-menu-vertical-demo"
               background-color="rgba(255, 255, 255, 0)"
-              text-color="#262424"
+              text-color="#fff"
               active-text-color="#ba6049">
             <!-- 首页 -->
             <el-menu-item index="/">
@@ -86,7 +99,7 @@ span {
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-takeaway-box"></i>
-                <span >存储空间</span>
+                <span>存储空间</span>
               </template>
               <el-menu-item index="/sys-index/bucket/createBucket">
                 <i class="el-icon-circle-plus-outline"></i>

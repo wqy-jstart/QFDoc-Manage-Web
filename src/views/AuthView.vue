@@ -1,6 +1,12 @@
 <style>
+body {
+  background-color: #dcf1e8;
+}
+
 .layout-header {
-  background: #1684b0;
+  background: #2c71b4 !important;
+  text-align: left;
+  line-height: 60px;
 }
 
 .layout-header h1 {
@@ -18,7 +24,7 @@
 }
 
 .layout-aside {
-  background: #222c32;
+  background: #29343e !important;
   font-family: 微软雅黑;
   font-weight: bolder;
   color: aliceblue;
@@ -28,11 +34,15 @@
   color: #fff !important;
 }
 
-.layout-main {
+.layout-main1 {
 }
 
 .el-menu-item.is-active {
   background: #262424 !important;
+}
+
+span {
+  font-size: 15px;
 }
 </style>
 <template>
@@ -52,7 +62,7 @@
               router
               :default-active="$router.currentRoute.path"
               class="el-menu-vertical-demo"
-              background-color="#222c32"
+              background-color="rgba(255, 255, 255, 0)"
               text-color="#fff"
               active-text-color="#ba6049">
             <!-- 首页 -->
@@ -61,13 +71,17 @@
               <span style="color: aliceblue;font-size: 18px;font-weight: bold">首页</span>
             </el-menu-item>
 
-            <el-menu-item index="/sys-admin/main/admin/add-new">
+            <el-menu-item index="/sys-admin/user/userAddNew">
               <i class="el-icon-circle-plus"></i>
               <span>添加用户</span>
             </el-menu-item>
-            <el-menu-item index="/sys-admin/main/user/list">
+            <el-menu-item index="/sys-admin/user/userList">
               <i class="el-icon-user-solid"></i>
               <span>用户列表</span>
+            </el-menu-item>
+            <el-menu-item index="/sys-admin/user/userList1">
+              <i class="el-icon-user-solid"></i>
+              <span>角色管理</span>
             </el-menu-item>
             <el-menu-item index="/sys-admin/main/banner/add-new">
               <i class="el-icon-s-platform"></i>
@@ -76,7 +90,7 @@
           </el-menu>
         </el-aside>
         <!-- 下半部分的右侧主体部分 -->
-        <el-main class="layout-main">
+        <el-main class="layout-main1">
           <router-view/>
         </el-main>
       </el-container>

@@ -108,7 +108,7 @@ a {
                 <i class="el-icon-s-tools"></i>
                 <span>空间标签</span>
               </template>
-              <el-menu-item index="/sys-index/bucket/setBucketTags">
+              <el-menu-item index="/sys-index/tags/setBucketTags">
                 <i class="el-icon-s-platform"></i>
                 <span style="font-size: 15px;font-weight: bold">设置空间标签</span>
               </el-menu-item>

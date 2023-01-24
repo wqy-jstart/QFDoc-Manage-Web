@@ -51,6 +51,10 @@ a {
 .el-menu-item.is-active {
   background: #262424 !important;
 }
+
+span {
+  font-size: 15px;
+}
 </style>
 <template>
   <div>
@@ -75,84 +79,84 @@ a {
               active-text-color="#ba6049">
             <!-- 首页 -->
             <el-menu-item index="/">
-              <i class="el-icon-s-home"></i>
-              <span>首页</span>
+              <i class="el-icon-loading"></i>
+              <span style="font-size: 18px;font-weight: bold">首页</span>
             </el-menu-item>
             <!-- 临时页面 -->
             <el-submenu index="1">
               <template slot="title">
-                <i class="el-icon-s-tools"></i>
-                <span>存储空间</span>
+                <i class="el-icon-takeaway-box"></i>
+                <span >存储空间</span>
               </template>
               <el-menu-item index="/sys-index/bucket/createBucket">
-                <i class="el-icon-loading"></i>
+                <i class="el-icon-circle-plus-outline"></i>
                 <span style="font-size: 15px;font-weight: bold">创建存储空间</span>
               </el-menu-item>
 
               <el-menu-item index="/sys-index/bucket/dropBucket">
-                <i class="el-icon-circle-plus"></i>
+                <i class="el-icon-remove-outline"></i>
                 <span style="font-size: 15px;font-weight: bold">删除存储空间</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/bucket/bucketList">
-                <i class="el-icon-user-solid"></i>
+                <i class="el-icon-date"></i>
                 <span style="font-size: 15px;font-weight: bold">Bucket文件列表</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/bucket/setBucketPrivate">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-user"></i>
                 <span style="font-size: 15px;font-weight: bold">设置Bucket访问权限</span>
               </el-menu-item>
             </el-submenu>
 
             <el-submenu index="2">
               <template slot="title">
-                <i class="el-icon-s-tools"></i>
+                <i class="el-icon-s-flag"></i>
                 <span>空间标签</span>
               </template>
               <el-menu-item index="/sys-index/tags/setBucketTags">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-setting"></i>
                 <span style="font-size: 15px;font-weight: bold">设置空间标签</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/tags/tagList">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-help"></i>
                 <span style="font-size: 15px;font-weight: bold">查询空间标签</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/tags/deleteToTags">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-remove-outline"></i>
                 <span style="font-size: 15px;font-weight: bold">删除空间标签</span>
               </el-menu-item>
             </el-submenu>
 
             <el-submenu index="3">
               <template slot="title">
-                <i class="el-icon-s-tools"></i>
+                <i class="el-icon-folder-opened"></i>
                 <span>资源管理</span>
               </template>
               <el-menu-item index="/sys-index/file/fileUpload">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-folder-add"></i>
                 <span style="font-size: 15px;font-weight: bold">文件上传</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/fileToDelete">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-folder-remove"></i>
                 <span style="font-size: 15px;font-weight: bold">删除文件</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/setFileStatus">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-mobile"></i>
                 <span style="font-size: 15px;font-weight: bold">存储状态</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/copyToFile">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-document-copy"></i>
                 <span style="font-size: 15px;font-weight: bold">文件复制</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/setBucketType">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-paperclip"></i>
                 <span style="font-size: 15px;font-weight: bold">修改存储类型</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/fileToThaw">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-data-line"></i>
                 <span style="font-size: 15px;font-weight: bold">解冻归档文件</span>
               </el-menu-item>
               <el-menu-item index="/sys-index/file/setOverTime">
-                <i class="el-icon-s-platform"></i>
+                <i class="el-icon-timer"></i>
                 <span style="font-size: 15px;font-weight: bold">修改过期时间</span>
               </el-menu-item>
             </el-submenu>

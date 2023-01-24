@@ -31,7 +31,7 @@ export default {
     submitForm() {
       let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/create';
       if (this.bucketName == '') {
-        this.$message.error("存储空间名不能为空！")
+        this.$message.warning("存储空间名不能为空！")
       } else {
         this.axios
             .create({

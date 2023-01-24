@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">
         <i class="el-icon-s-promotion"></i> 文档管理
       </el-breadcrumb-item>
-      <el-breadcrumb-item>Bucket文件列表</el-breadcrumb-item>
+      <el-breadcrumb-item>Bucket标签列表</el-breadcrumb-item>
     </el-breadcrumb>
 
     <el-divider></el-divider>
@@ -44,21 +44,25 @@ export default {
   methods: {
     submitForm() {
       this.tagData = [];
-      let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/selectToTags';
-      this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          }).get(url).then((response) => {
-        let responseBody = response.data;
-        console.log(responseBody)
-        if (responseBody.state == 20000){
-          this.tagData = responseBody.data;
-        }else {
-          this.$message.error(responseBody.message);
-        }
-      })
+      if (this.bucketName == ''){
+        this.$message.warning("请指定存储空间！")
+      }else {
+        let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/selectToTags';
+        this.axios
+            .create({
+              'headers': {
+                'Authorization': localStorage.getItem('jwt')
+              }
+            }).get(url).then((response) => {
+          let responseBody = response.data;
+          console.log(responseBody)
+          if (responseBody.state == 20000){
+            this.tagData = responseBody.data;
+          }else {
+            this.$message.error(responseBody.message);
+          }
+        })
+      }
     }
   }
 }

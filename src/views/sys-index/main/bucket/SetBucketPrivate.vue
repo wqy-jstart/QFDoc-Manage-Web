@@ -23,7 +23,7 @@
               show-word-limit></el-input>
     <el-button style="margin-left: 10px" type="primary" @click="setPublic()">设置公开
     </el-button>
-    <el-button style="margin-left: 10px" type="primary" @click="setPrivate()">设置私有
+    <el-button style="margin-left: 10px" type="warning" @click="setPrivate()">设置私有
     </el-button>
   </div>
 </template>

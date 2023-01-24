@@ -10,7 +10,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">
         <i class="el-icon-s-promotion"></i> 文档管理
       </el-breadcrumb-item>
-      <el-breadcrumb-item>设置文件过期时间</el-breadcrumb-item>
+      <el-breadcrumb-item>设置Bucket标签</el-breadcrumb-item>
     </el-breadcrumb>
 
     <el-divider></el-divider>

@@ -64,26 +64,30 @@ export default {
     tableRowClassName({row, rowIndex}) {
       if (rowIndex === 1) {
         return 'warning-row';
-      } else if (rowIndex === 3){
+      } else if (rowIndex === 3) {
         return 'success-row';
       }
     },
     submitForm() {
-      let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/bucketList';
-      this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          }).get(url).then((response) => {
-        let responseBody = response.data;
-        console.log(responseBody)
-        if (responseBody.state == 20000){
-          this.bucketData = responseBody.data;
-        }else {
-          this.$message.error(responseBody.message);
-        }
-      })
+      if (this.bucketName == '') {
+        this.$message.warning("存储空间名不能为空！")
+      } else {
+        let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/bucketList';
+        this.axios
+            .create({
+              'headers': {
+                'Authorization': localStorage.getItem('jwt')
+              }
+            }).get(url).then((response) => {
+          let responseBody = response.data;
+          console.log(responseBody)
+          if (responseBody.state == 20000) {
+            this.bucketData = responseBody.data;
+          } else {
+            this.$message.error(responseBody.message);
+          }
+        })
+      }
     }
   }
 }

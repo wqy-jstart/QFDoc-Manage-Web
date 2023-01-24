@@ -15,7 +15,7 @@
     <span style="font-size: 20px;font-family: 方正姚体">请输入空间名称:</span>
     <el-input style="width: 300px" type="text" v-model="bucketName" placeholder="请输入空间名：" maxlength="10"
               show-word-limit></el-input>
-    <el-button style="margin-left: 10px" type="primary" @click="submitForm()">删除
+    <el-button style="margin-left: 10px" type="danger" @click="submitForm()">删除
     </el-button>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     submitForm() {
       let url = this.GLOBAL.systemUrl + 'bucket/' + this.bucketName + '/drop';
       if (this.bucketName == '') {
-        this.$message.error("存储空间名不能为空！")
+        this.$message.warning("存储空间名不能为空！")
       } else {
         this.axios
             .create({

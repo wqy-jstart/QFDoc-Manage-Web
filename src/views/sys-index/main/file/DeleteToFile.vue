@@ -26,7 +26,7 @@
         <el-input v-model="key"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">删除</el-button>
+        <el-button type="danger" @click="submitForm()">删除</el-button>
         <el-button @click="resetForm()">重置</el-button>
       </el-form-item>
     </el-form>

@@ -26,9 +26,6 @@
       <el-form-item label="签名" prop="sign">
         <el-input v-model="ruleForm.sign"></el-input>
       </el-form-item>
-      <el-form-item label="简介" prop="description">
-        <el-input v-model="ruleForm.description"></el-input>
-      </el-form-item>
       <el-form-item label="手机号码" prop="phone">
         <el-input v-model="ruleForm.phone"></el-input>
       </el-form-item>
@@ -80,7 +77,6 @@ export default {
         gender:'男',
         age:'20',
         sign:'我是测试人员',
-        description: 'nothing',
         phone: '15551898017',
         email: '2168149199@qq.com',
         avatar: 'https://img2.baidu.com/it/u=4244269751,4000533845&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',

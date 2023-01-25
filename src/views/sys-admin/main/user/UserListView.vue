@@ -18,9 +18,11 @@
           <div class="block"><el-avatar :size="80" :src="scope.row.avatar"></el-avatar></div>
         </template>
       </el-table-column>
+      <el-table-column prop="gender" label="性别" width="120" align="center"></el-table-column>
+      <el-table-column prop="age" label="年龄" width="120" align="center"></el-table-column>
       <el-table-column prop="phone" label="手机号码" width="120" align="center"></el-table-column>
       <el-table-column prop="email" label="电子邮箱" width="180" align="center"></el-table-column>
-      <el-table-column prop="description" label="管理员简介" header-align="center"></el-table-column>
+      <el-table-column prop="sign" label="签名" width="120" align="center"></el-table-column>
       <el-table-column label="是否启用" width="80" align="center">
         <template slot-scope="scope">
           <!-- 1开 0关 -->
@@ -35,9 +37,7 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column prop="lastLoginIp" label="最后一次登录地址" width="80" align="center"></el-table-column>
-      <el-table-column prop="loginCount" label="累计登录次数" width="80" align="center"></el-table-column>
-      <el-table-column prop="gmtLastLogin" label="最后一次登录时间" width="80" align="center"></el-table-column>
+      <el-table-column prop="gmtCreate" label="创建时间" width="80" align="center"></el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" circle size="mini"
@@ -56,7 +56,6 @@
 export default {
   data() {
     return {
-      passportUrl: global.passportUrl,
       tableData: [],
     }
   },
@@ -67,7 +66,7 @@ export default {
       //点击后获取的enable值
       console.log('admin enable=' + admin.enable);
       let enableText = ['禁用', '启用'];
-      let url = this.passportUrl+'admins/' + admin.id;
+      let url = this.GLOBAL.systemUrl+'users/' + admin.id;
       if (admin.enable == 1) { // 如果点击后enable为1,说明是启用操作,则请求路径应为处理启用的路径
         console.log("启用管理员")
         url += '/enable';
@@ -94,7 +93,7 @@ export default {
           this.$message.error(responseBody.message);
         }
         if (responseBody.state == 40400) { // 数据不存在的时候才刷新
-          this.loadAlbumList();
+          this.loadAdminList();
         }
       })
     },
@@ -107,7 +106,7 @@ export default {
     },
     // 根据id删除管理员
     handleDelete(admin) {
-      let url = this.passportUrl+'admins/' + admin.id + '/delete';
+      let url = this.GLOBAL.systemUrl+'users/' + admin.id + '/deleteById';
       console.log('url=' + url);
       this.axios
           .create({
@@ -145,7 +144,7 @@ export default {
     loadAdminList() {
       console.log('loadAdminList');
       console.log('在localStorage中的JWT数据:' + localStorage.getItem('jwt'))
-      let url = this.passportUrl+"admins" // 请求路径
+      let url = this.GLOBAL.systemUrl+"users/selectList" // 请求路径
       console.log('url=' + url);
       // .create方法会返回一个axios对象,可在其中配置请求头
       this.axios

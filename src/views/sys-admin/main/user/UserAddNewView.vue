@@ -12,10 +12,19 @@
         <el-input v-model="ruleForm.username"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="ruleForm.password"></el-input>
+        <el-input type="password" v-model="ruleForm.password"></el-input>
       </el-form-item>
       <el-form-item label="昵称" prop="nickname">
         <el-input v-model="ruleForm.nickname"></el-input>
+      </el-form-item>
+      <el-form-item label="性别" prop="gender">
+        <el-input v-model="ruleForm.gender"></el-input>
+      </el-form-item>
+      <el-form-item label="年龄" prop="age">
+        <el-input v-model="ruleForm.age"></el-input>
+      </el-form-item>
+      <el-form-item label="签名" prop="sign">
+        <el-input v-model="ruleForm.sign"></el-input>
       </el-form-item>
       <el-form-item label="简介" prop="description">
         <el-input v-model="ruleForm.description"></el-input>
@@ -62,13 +71,15 @@
 export default {
   data() {
     return {
-      passportUrl:global.passportUrl,
       roleListOptions: [],
       ruleForm: {
         roleIds: [],// 绑定多选角色的多个id
         username: '武清源',
         password: '123456',
         nickname: 'Devotion',
+        gender:'男',
+        age:'20',
+        sign:'我是测试人员',
         description: 'nothing',
         phone: '15551898017',
         email: '2168149199@qq.com',
@@ -82,7 +93,7 @@ export default {
         ],
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'},
-          {min: 4, max: 15, message: '长度在 4 到 15 个字符', trigger: 'blur'}
+          {min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur'}
         ],
         nickname: [
           {required: true, message: '请输入昵称', trigger: 'blur'},
@@ -102,7 +113,7 @@ export default {
         ],
         //"blur"丢失焦点事件
         roleIds: [
-          {required: true, message: '请至少输入一个角色', trigger: 'blur'}
+          {required: true, message: '请至少选择一个角色', trigger: 'blur'}
         ]
       }
     };
@@ -111,7 +122,7 @@ export default {
     // 获取角色列表
     loadRoleList() {
       console.log('loadRoleList');
-      let url = this.passportUrl+"roles" // 请求路径
+      let url = this.GLOBAL.systemUrl+"roles" // 请求路径
       console.log('url=' + url);
       this.axios
           .create({
@@ -121,15 +132,19 @@ export default {
           })
           .get(url).then((response) => {// 发送异步请求
         let responseBody = response.data;
-        this.roleListOptions = responseBody.data;//将获取响应的数据中的data数据赋值给tableData
+        if (responseBody.state == 20000){
+          this.roleListOptions = responseBody.data;//将获取响应的数据中的data数据赋值给tableData
+        }else {
+          this.$message.error(responseBody.message);
+        }
       })
     },
-    // 添加管理员事件
+    // 添加用户事件
     submitForm(formName) {
       // 对表单进行检查
       this.$refs[formName].validate((valid) => {
         if (valid) { // 满足条件则通过验证
-          let url = this.passportUrl+'admins/add-new'
+          let url = this.GLOBAL.systemUrl+'users/insertToAdmin'
           console.log('url = ' + url);
           //将formData对象转换成FormData格式,当后端不添加@RequestBody注解时接收    {indices、brackets、repeat}数组格式
           let formData = this.qs.stringify(this.ruleForm,{arrayFormat:'repeat'});
@@ -146,7 +161,7 @@ export default {
             console.log(responseBody);
             if (responseBody.state == 20000) {
               this.$message({
-                message: '添加管理员成功！',
+                message: '添加用户成功！',
                 type: 'success'
               });
               this.resetForm(formName);// 调用该函数重置表单中的信息

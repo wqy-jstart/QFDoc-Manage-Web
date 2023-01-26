@@ -79,7 +79,7 @@ span {
               <i class="el-icon-user-solid"></i>
               <span>用户列表</span>
             </el-menu-item>
-            <el-menu-item index="/sys-admin/user/userList1">
+            <el-menu-item index="/sys-admin/user/assignRole">
               <i class="el-icon-user-solid"></i>
               <span>角色管理</span>
             </el-menu-item>

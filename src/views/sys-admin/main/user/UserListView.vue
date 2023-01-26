@@ -24,7 +24,7 @@
       <el-table-column prop="age" label="年龄" width="120" align="center"></el-table-column>
       <el-table-column prop="phone" label="手机号码" width="120" align="center"></el-table-column>
       <el-table-column prop="email" label="电子邮箱" width="180" align="center"></el-table-column>
-      <el-table-column prop="sign" label="签名" width="120" align="center"></el-table-column>
+      <el-table-column prop="sign" label="签名" align="center"></el-table-column>
       <el-table-column label="是否启用" width="80" align="center">
         <template slot-scope="scope">
           <!-- 1开 0关 -->
@@ -39,43 +39,55 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column prop="gmtCreate" label="创建时间" width="80" align="center"></el-table-column>
+      <el-table-column prop="gmtCreate" label="创建时间" align="center"></el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" circle size="mini"
+          <el-button type="primary" icon="el-icon-edit" size="mini"
                      :disabled="scope.row.id == 1"
-                     @click="handleEdit(scope.row)"></el-button>
-          <el-button type="danger" icon="el-icon-delete" circle size="mini"
+                     @click="handleEdit(scope.row)">修改
+          </el-button>
+          <el-button type="danger" icon="el-icon-delete" size="mini"
                      :disabled="scope.row.id == 1"
-                     @click="openDeleteConfirm(scope.row)"></el-button>
-          <el-button type="warning" icon="el-icon-s-help" circle size="mini"
-                     :disabled="scope.row.id == 1"
-                     @click="setPassport(scope.row)"/>
+                     @click="openDeleteConfirm(scope.row)">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 弹出的编辑相册的对话框 -->
-    <el-dialog width="40%" title="分配角色" :visible.sync="dialogFormVisible">
+    <el-dialog width="40%" title="修改用户信息:" :visible.sync="dialogFormVisible">
       <el-form :model="ruleForm">
-        <el-form-item label="用户名" :label-width="formLabelWidth">
+        <el-form-item label="用户名:" :label-width="formLabelWidth">
           <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色列表" :label-width="formLabelWidth">
-          <template>
-            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选
-            </el-checkbox>
-            <div style="margin: 15px 0;"></div>
-            <!--label标签对应选择的多选框Id-->
-            <el-checkbox-group v-model="checkedRoles" @change="handleCheckedCitiesChange">
-              <el-checkbox v-for="role in roles" :label="role.id">{{ role.name }}</el-checkbox>
-            </el-checkbox-group>
-          </template>
+        <el-form-item label="密码:" :label-width="formLabelWidth">
+          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="昵称:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.nickname" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="头像url:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.avatar" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="性别:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.gender" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="年龄:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.age" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.phone" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="电子邮箱:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.email" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="签名:" :label-width="formLabelWidth">
+          <el-input v-model="ruleForm.sign" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitEdit()">保存</el-button>
+        <el-button type="primary" @click="submitEdit()">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -88,107 +100,61 @@ export default {
       tableData: [],
       ruleForm: {
         username: '',
-        role: ''
+        password: '',
+        nickname: '',
+        avatar: '',
+        gender: '',
+        age: '',
+        phone: '',
+        email: '',
+        sign: ''
       },
-      roleIds:[], // 传递选中的角色id
-      oldRoleIds:[],
       dialogFormVisible: false,
       formLabelWidth: '120px',
-      checkAll: false,
-      checkedRoles: [], // 勾选过的角色
-      roles: [],// 显示全部角色
-      isIndeterminate: true
     }
   },
   methods: {
-    // 保存
+    // 提交更新用户的请求
     submitEdit() {
-      // 将选择的角色传递给后端插入到用户角色关联表中
-      let object = {username:this.ruleForm.username,roleIds:this.checkedRoles,oldRoleIds:this.oldRoleIds};
-      console.log("角色："+this.checkedRoles)
-      let url = this.GLOBAL.systemUrl + "userRoles/assignToRole";
-      let formString = this.qs.stringify(object);
+      let url = this.GLOBAL.systemUrl + "users/update";
+      let formString = this.qs.stringify(this.ruleForm)
       this.axios
           .create({
             'headers': {
               'Authorization': localStorage.getItem('jwt')
             }
-          }).post(url,formString).then((response)=>{
+          }).post(url, formString).then((response) => {
         let responseBody = response.data;
-        if (responseBody.state == 20000){
-          this.$message.success("分配成功！")
-          this.oldRoleIds = [];
+        if (responseBody.state == 20000) {
+          this.$message.success("修改成功！")
           this.dialogFormVisible = false;
-        }else {
+          this.loadAdminList();
+        } else {
           this.$message.error(responseBody.message);
         }
       })
     },
-    // 点击弹框
-    setPassport(admin) {
+    // 编辑修改按钮
+    handleEdit(user) {
       this.dialogFormVisible = true;
-      this.ruleForm.username = admin.username;
-      // 查询所有角色，赋值给cities
-      let url = this.GLOBAL.systemUrl + "roles" // 请求路径
-      console.log('url=' + url);
+      let url = this.GLOBAL.systemUrl + 'users/' + user.id + '/selectById';
+      console.log(url);
       this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          })
-          .get(url).then((response) => {// 发送异步请求
+          .create(
+              {
+                'headers': {'Authorization': localStorage.getItem('jwt')}
+              }
+          )
+          .get(url).then((response) => {
         let responseBody = response.data;
         if (responseBody.state == 20000) {
-          this.roles = responseBody.data;//将获取响应的数据中的data数据赋值给tableData
+          this.ruleForm = responseBody.data;
+          this.dialogFormVisible = true;
         } else {
           this.$message.error(responseBody.message);
+          this.loadAdminList();
         }
       })
-      // 查询当前角色
-      let url1 = this.GLOBAL.systemUrl + 'roles/' + admin.id + '/selectToUserId';
-      this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          })
-          .post(url1).then((response) => {// 发送异步请求
-        let responseBody = response.data;
-        if (responseBody.state == 20000) {
-          this.checkedRoles = responseBody.data;//将获取响应的数据中的data数据赋值给tableData
-          this.oldRoleIds = responseBody.data; //记录原来分配的角色
-          console.log("原来："+this.oldRoleIds)
-        } else {
-          this.$message.error(responseBody.message);
-        }
-      })
-    },
-    // 全选的事件
-    handleCheckAllChange(val) {
-      console.log("点击全选")
-      this.checkedRoles = val ? this.roles : [];
-      this.isIndeterminate = false;
-      let url = this.GLOBAL.systemUrl + "roles/selectRoleIds";
-      this.axios
-          .create({
-            'headers': {
-              'Authorization': localStorage.getItem('jwt')
-            }
-          }).get(url).then((response)=>{
-        let responseBody = response.data;
-        if (responseBody.state == 20000){
-          this.checkedRoles = responseBody.data;
-        }
-      })
-    },
-    // 勾选的事件
-    handleCheckedCitiesChange(value) {
-      console.log("点击勾选")
-      console.log(value)
-      let checkedCount = value.length;
-      this.checkAll = checkedCount === this.roles.length;
-      this.isIndeterminate = checkedCount > 0 && checkedCount < this.roles.length;
     },
     // 改变管理员状态
     changeEnable(admin) {
@@ -214,7 +180,7 @@ export default {
           .post(url).then((response) => {
         let responseBody = response.data;
         if (responseBody.state == 20000) {
-          let message = '将管理员[' + admin.username + ']的启用状态改为[' + enableText[admin.enable] + ']成功!';
+          let message = '将管理员[' + admin.nickname + ']的启用状态改为[' + enableText[admin.enable] + ']成功!';
           this.$message({
             message: message,
             type: 'success'
@@ -226,13 +192,6 @@ export default {
           this.loadAdminList();
         }
       })
-    },
-    // 编辑管理员(未开发)
-    handleEdit(admin) {
-      let message = '您正在尝试编辑【' + admin.id + '-' + admin.username + '】的相册详情,抱歉该功能暂未实现...';
-      this.$alert(message, '提示', {
-        confirmButtonText: '确定'
-      });
     },
     // 根据id删除管理员
     handleDelete(admin) {

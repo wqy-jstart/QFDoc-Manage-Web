@@ -81,11 +81,15 @@ span {
             </el-menu-item>
             <el-menu-item index="/sys-admin/user/assignRole">
               <i class="el-icon-user-solid"></i>
-              <span>角色管理</span>
+              <span>分配角色</span>
             </el-menu-item>
-            <el-menu-item index="/sys-admin/main/banner/add-new">
+            <el-menu-item index="/sys-admin/user/roleList">
+              <i class="el-icon-user-solid"></i>
+              <span>角色列表</span>
+            </el-menu-item>
+            <el-menu-item index="/sys-admin/user/assignPermission">
               <i class="el-icon-s-platform"></i>
-              <span slot="title">权限管理</span>
+              <span slot="title">分配权限</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
@@ -106,7 +110,7 @@ export default {
     }
   },
   methods: {
-    goBack(){
+    goBack() {
       location.href = '/';
     },
   },

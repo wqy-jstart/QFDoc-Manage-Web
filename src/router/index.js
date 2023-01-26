@@ -26,6 +26,14 @@ const routes = [
                 component: () => import( '../views/sys-admin/main/user/AssignRole')
             },
             {
+                path: '/sys-admin/user/roleList',
+                component: () => import( '../views/sys-admin/main/user/RoleListView')
+            },
+            {
+                path: '/sys-admin/user/assignPermission',
+                component: () => import( '../views/sys-admin/main/user/AssignPermission')
+            },
+            {
                 path: '/sys-admin/user/userAddNew',
                 component: () => import( '../views/sys-admin/main/user/UserAddNewView')
             },

@@ -27,7 +27,7 @@
     </el-table>
 
     <!-- 弹出的编辑相册的对话框 -->
-    <el-dialog width="40%" title="修改用户信息:" :visible.sync="dialogFormVisibleToPermission">
+    <el-dialog width="40%" title="修改角色信息:" :visible.sync="dialogFormVisibleToPermission">
       <el-form :model="ruleForm">
         <el-form-item label="用户名:" :label-width="formLabelWidth">
           <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
@@ -125,8 +125,8 @@ export default {
       })
     },
     // 编辑修改按钮
-    handleEdit(user) {
-      let url = this.GLOBAL.systemUrl + 'users/' + user.id + '/selectById';
+    handleEdit(role) {
+      let url = this.GLOBAL.systemUrl + 'roles/' + role.id + '/selectById';
       console.log(url);
       this.axios
           .create(
@@ -134,7 +134,7 @@ export default {
                 'headers': {'Authorization': localStorage.getItem('jwt')}
               }
           )
-          .get(url).then((response) => {
+          .post(url).then((response) => {
         let responseBody = response.data;
         if (responseBody.state == 20000) {
           this.ruleForm = responseBody.data;

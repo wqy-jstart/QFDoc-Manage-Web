@@ -83,6 +83,10 @@ span {
               <i class="el-icon-user-solid"></i>
               <span>分配角色</span>
             </el-menu-item>
+            <el-menu-item index="/sys-admin/user/roleAddNew">
+              <i class="el-icon-user-solid"></i>
+              <span>添加角色</span>
+            </el-menu-item>
             <el-menu-item index="/sys-admin/user/roleList">
               <i class="el-icon-user-solid"></i>
               <span>角色列表</span>

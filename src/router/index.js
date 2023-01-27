@@ -37,6 +37,10 @@ const routes = [
                 path: '/sys-admin/user/userAddNew',
                 component: () => import( '../views/sys-admin/main/user/UserAddNewView')
             },
+            {
+                path: '/sys-admin/user/roleAddNew',
+                component: () => import( '../views/sys-admin/main/user/RoleAddNewView')
+            },
         ]
 
     },

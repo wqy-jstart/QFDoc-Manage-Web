@@ -2,7 +2,8 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right" style="font-size: 20px;">
       <el-breadcrumb-item :to="{ path: '/' }">
-        <i class="el-icon-s-promotion"></i>  文档管理</el-breadcrumb-item>
+        <i class="el-icon-s-promotion"></i> 文档管理
+      </el-breadcrumb-item>
       <el-breadcrumb-item>文件上传</el-breadcrumb-item>
     </el-breadcrumb>
 
@@ -45,7 +46,7 @@ export default {
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
-      if (file.response == null){
+      if (file.response == null) {
         this.$message.warning("文件暂未上传，删除失败！")
       }
       let url = this.GLOBAL.systemUrl + 'file/remove?url=' + file.response.data;
